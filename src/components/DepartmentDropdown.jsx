@@ -1,15 +1,19 @@
-import React from "react";
 import "./Dropdown.css";
 
-const Dropdown = ({ employees, attribute, label }) => {
-  // Extract unique values based on the selected attribute (e.g., department, role, yearsAtCompany)
+const DepartmentDropdown = ({ employees, attribute, label, onFilter, selectedValue }) => {
+  // Fix attribute name for years filter
   const uniqueValues = [...new Set(employees.map(emp => emp[attribute]))];
 
   return (
     <div className="dropdown-container">
       <label htmlFor={attribute}>{label}</label>
-      <select id={attribute} className="dropdown">
-        <option value="">Select a {label.toLowerCase()}</option>
+      <select
+        id={attribute}
+        className="dropdown"
+        onChange={(e) => onFilter(attribute, e.target.value)}
+        value={selectedValue} // Ensures dropdown reflects current selection
+      >
+        <option value="">All</option>
         {uniqueValues.map((value, index) => (
           <option key={index} value={value}>{value}</option>
         ))}
@@ -18,4 +22,4 @@ const Dropdown = ({ employees, attribute, label }) => {
   );
 };
 
-export default Dropdown;
+export default DepartmentDropdown;
