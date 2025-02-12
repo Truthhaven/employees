@@ -42,7 +42,7 @@
 }
 
 /* Move popup to the bottom for screens below 414px */
-@media (max-width: 414px) {
+@media (max-width: 800px) {
   .no-results-popup {
     top: auto;
     bottom: 10px; /* Position it slightly above the screen bottom */
@@ -52,3 +52,28 @@
     max-width: 350px;
   }
 }
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-bar {
+  margin-top: -12.5em;
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid white; /* Transparent background */
+  background: transparent;
+  color: black;
+  outline: none;
+}
+
+.search-bar::placeholder {
+  color: rgba(0, 0, 0, 0.8)
+
+}
+
+

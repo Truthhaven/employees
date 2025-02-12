@@ -8,6 +8,7 @@ function App() {
   const [employees, setEmployees] = useState([]); // Store all employees
   const [filteredEmployees, setFilteredEmployees] = useState([]); // Store filtered employees
   const [filters, setFilters] = useState({ department: "", role: "", years_at_company: "" }); // Store active filters
+  const [searchQuery, setSearchQuery] = useState(""); // Store search input
   const [selectedValues, setSelectedValues] = useState({ department: "", role: "", years_at_company: "" }); // Keep track of selected dropdown values
   const [showNoResults, setShowNoResults] = useState(false); // Track "No Results" popup
 
@@ -37,11 +38,21 @@ function App() {
       filtered = filtered.filter(emp => emp.years_at_company === parseInt(filters.years_at_company));
     }
 
+    // Apply search query (name, department, role, or years_at_company)
+    if (searchQuery) {
+      filtered = filtered.filter(emp =>
+        emp.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        emp.department.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        emp.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        emp.years_at_company.toString().includes(searchQuery)
+      );
+    }
+
     setFilteredEmployees(filtered);
 
     // Show "No Results" popup if filtered list is empty
     setShowNoResults(filtered.length === 0);
-  }, [filters, employees]);
+  }, [filters, searchQuery, employees]);
 
   // **Update Filters & Dropdown Values**
   const handleFilterChange = (attribute, value) => {
@@ -59,12 +70,24 @@ function App() {
   const resetFilters = () => {
     setFilters({ department: "", role: "", years_at_company: "" });
     setSelectedValues({ department: "", role: "", years_at_company: "" });
+    setSearchQuery("");
   };
 
   return (
     <> 
       {/* Pass resetFilters function to Header */}
       <Header resetFilters={resetFilters} /> 
+
+       {/* Search Bar */}
+       <div className="search-container">
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="Search by name, department, role, or years..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
 
       {/* Dropdown Filters */}
       <div className="dropdowns"> 

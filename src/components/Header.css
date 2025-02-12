@@ -35,6 +35,7 @@
   .clearAll{
     font-weight: normal;
     transition: text-decoration 0.2s ease-in-out; /* Smooth underline effect */
+    z-index: 1;
   }
 
   .clearAll:hover {
