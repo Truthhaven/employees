@@ -26,11 +26,14 @@ function App() {
           <DepartmentDropdown employees={employees} attribute="yearsAtCompany" label="Years at Company" />
         </div>
     
-    <div className="container">
-      {employees.map((employee, index) => (
-        <EmployeeCard key={index} employee={employee} />
-      ))}
-    </div>
+        <div className="container">
+  {employees
+    .sort((a, b) => b.yearsAtCompany - a.yearsAtCompany) // Sort in descending order
+    .map((employee, index) => (
+      <EmployeeCard key={index} employee={employee} />
+    ))}
+</div>
+
     </>
   );
 }
