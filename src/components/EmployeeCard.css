@@ -1,59 +1,60 @@
-.card{
-  display:flex;
+.card {
+  display: flex;
   flex-direction: row;
   width: 40em;
   height: 12em;
   transition: transform 0.2s ease-in-out;
   position: relative; /* Important for absolute positioning */
   z-index: 1; /* Ensures text stays above background */
-  border: .2px solid gray;
+  border: 0.2px solid gray;
 }
 
-/* Ensure every card gets the vertical red line */
+/* Horizontal line at the top of the card */
 .card::before {
   content: "";
   position: absolute;
   top: 0;
-  right: 0; /* Moves line to the right */
-  width: 4px; /* Line thickness */
-  height: 100%; /* Extends full height */
-  background-color: var(--borderColor, gray); 
-  opacity: 0.7; /* Starts slightly transparent */
-  transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  left: 50%; /* Start from the left edge */
+  width: 50%; /* Full width */
+  height: 4px; /* Line thickness */
+  background-color: var(--borderColor, gray); /* Dynamic color */
+  opacity: 0.7; /* Slight transparency */
+  transition: width 0.4s ease-in-out, height 0.4s ease-in-out, opacity 0.4s ease-in-out; /* Slowed down */
   z-index: -1;
+}
+
+/* Hover effect: Expand the horizontal line */
+.card:hover::before {
+  height: 100%; /* Expand the line thickness */
+  opacity: 1; /* Make it fully visible */
 }
 
 .card:hover {
   color: white; /* Change text to white */
 }
+
 .card:hover h2,
 .card:hover p {
   color: white;
 }
 
-/* Expand the red line on hover */
-.card:hover::before {
-  width: 50%; /* Expands the line */
-  opacity: 1;
-}
-
-.card img{
+.card img {
   width: 50%;
   height: 12em;
 }
 
-.info{
+.info {
   margin-left: 2em;
   font-family: "Avenir Next", "Avenir", Arial, sans-serif;
 }
 
-.role{
+.role {
   margin-top: -1.5em;
   font-size: 1em;
 }
 
-.name{
-  color:#ac0000;
+.name {
+  color: #ac0000;
   font-size: 1.5em;
   line-height: 1.5em;
   font-weight: normal;
@@ -69,4 +70,3 @@
   margin: 0; /* Removes unnecessary spacing */
   padding: 0; /* Ensures no extra padding is added */
 }
-
