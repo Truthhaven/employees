@@ -1,0 +1,39 @@
+.card{
+  display:flex;
+  flex-direction: row;
+  width: 40em;
+  height: 12em;
+}
+
+.card img{
+  width: 20em;
+  height: 12em;
+}
+
+.info{
+  margin-left: 2em;
+  font-family: "Avenir Next", "Avenir", Arial, sans-serif;
+}
+
+.role{
+  margin-top: -1.5em;
+  font-size: 1em;
+}
+
+.name{
+  color:#ac0000;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  font-weight: normal;
+}
+
+.groupedInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px; /* Adjusts space between department, years, and email */
+}
+
+.groupedInfo p {
+  margin: 0; /* Removes unnecessary spacing */
+  padding: 0; /* Ensures no extra padding is added */
+}

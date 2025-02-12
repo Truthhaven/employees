@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap into two columns */
+  gap: 20px;
+  justify-content: center;
+}
+
+.container > * {
+  width: 48%; /* Each card takes about half of the container */
+}
