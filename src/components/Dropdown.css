@@ -6,19 +6,20 @@
     margin-bottom: 10px;
     width: 20%;
     margin: 0 auto; /* Centers horizontally */
+    font-family: "Avenir Next", "Avenir", Arial, sans-serif;
   }
   
   label {
     display: block; /* Ensures the label is on top */
     font-size: 1rem;
-    font-weight: 600;
   }
   
   .dropdown {
     padding: 8px;
     font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: white; /* Ensures background is white */
+    border-radius: 0; /* Removes rounded corners */
     cursor: pointer;
     width: 100%; /* Ensures dropdown takes full width of container */
   }

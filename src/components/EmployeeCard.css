@@ -4,8 +4,8 @@
   width: 40em;
   height: 12em;
   transition: transform 0.2s ease-in-out;
-  position: relative; /* Important for absolute positioning */
-  z-index: 1; /* Ensures text stays above background */
+  position: relative;
+  z-index: 1;
   border: 0.2px solid gray;
 }
 
@@ -14,23 +14,23 @@
   content: "";
   position: absolute;
   top: 0;
-  left: 50%; 
-  width: 50%; 
-  height: 4px; /* Line thickness */
-  background-color: var(--borderColor, gray); /* Dynamic color */
-  opacity: 0.7; /* Slight transparency */
-  transition: width 0.4s ease-in-out, height 0.4s ease-in-out, opacity 0.4s ease-in-out; /* Slowed down */
+  left: 50%;
+  width: 50%;
+  height: 4px;
+  background-color: var(--borderColor, gray);
+  opacity: 0.7;
+  transition: width 0.4s ease-in-out, height 0.4s ease-in-out, opacity 0.4s ease-in-out;
   z-index: -1;
 }
 
 /* Hover effect: Expand the horizontal line */
 .card:hover::before {
-  height: 100%; /* Expand the line thickness */
-  opacity: 1; /* Make it fully visible */
+  height: 100%;
+  opacity: 1;
 }
 
 .card:hover {
-  color: white; /* Change text to white */
+  color: white;
 }
 
 .card:hover h2,
@@ -40,7 +40,7 @@
 
 /* Override text color to black if borderColor is yellow (gold) */
 .card[style*="--borderColor: gold"]:hover {
-  color: black !important; /* Text becomes black on hover if gold */
+  color: black !important;
 }
 
 .card[style*="--borderColor: gold"]:hover h2,
@@ -58,6 +58,7 @@
   font-family: "Avenir Next", "Avenir", Arial, sans-serif;
 }
 
+/* Default font sizes */
 .role {
   margin-top: -1.5em;
   font-size: 1em;
@@ -73,10 +74,126 @@
 .groupedInfo {
   display: flex;
   flex-direction: column;
-  gap: 2px; /* Adjusts space between department, years, and email */
+  gap: 2px;
 }
 
 .groupedInfo p {
-  margin: 0; /* Removes unnecessary spacing */
-  padding: 0; /* Ensures no extra padding is added */
+  margin: 0;
+  padding: 0;
+}
+/* 📌 MEDIA QUERIES FOR RESPONSIVE DESIGN */
+
+/* Adjust layout for large tablets and small desktops (below 1024px) */
+@media (max-width: 1024px) {
+  .card {
+    width: 32em; /* Slightly reduce width */
+    height: auto;
+  }
+
+  .name {
+    font-size: 1.25em; /* Adjust for readability */
+  }
+
+  .role {
+    font-size: 0.95em;
+  }
+
+  .groupedInfo p {
+    font-size: 0.9em;
+  }
+}
+
+/* Adjust for tablets and landscape phones (below 900px) */
+@media (max-width: 900px) {
+  .card {
+    width: 85%; /* Allow more fluidity */
+  }
+
+  .name {
+    font-size: 1.2em;
+  }
+
+  .role {
+    font-size: 0.9em;
+  }
+
+  .groupedInfo p {
+    font-size: 0.85em;
+  }
+}
+
+/* Stack layout for tablets & smaller screens (below 768px) */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .info {
+    margin-left: 0;
+    padding: 1em;
+    text-align: center;
+  }
+
+  .name {
+    font-size: 1.1em;
+  }
+
+  .role {
+    font-size: 0.85em;
+    margin-top: -0.5em;
+  }
+
+  .groupedInfo p {
+    font-size: 0.8em;
+  }
+}
+
+/* Mobile optimization (below 600px) */
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
+
+  .name {
+    font-size: 1em;
+  }
+
+  .role {
+    font-size: 0.75em;
+  }
+
+  .groupedInfo p {
+    font-size: 0.7em;
+  }
+}
+
+/* Extra small screens (below 400px) */
+@media (max-width: 414px) {
+  .card::before {
+    left: 0; /* Start from the very left */
+    width: 100%; /* Cover full width */
+    transform: none; /* Remove previous translateX effect */
+  }
+  .card {
+    width: 100%;
+  }
+
+  .name {
+    font-size: 0.9em;
+  }
+
+  .role {
+    font-size: 0.7em;
+  }
+
+  .groupedInfo p {
+    font-size: 0.65em;
+  }
 }
