@@ -14,8 +14,8 @@
   content: "";
   position: absolute;
   top: 0;
-  left: 50%; /* Start from the left edge */
-  width: 50%; /* Full width */
+  left: 50%; 
+  width: 50%; 
   height: 4px; /* Line thickness */
   background-color: var(--borderColor, gray); /* Dynamic color */
   opacity: 0.7; /* Slight transparency */
@@ -36,6 +36,16 @@
 .card:hover h2,
 .card:hover p {
   color: white;
+}
+
+/* Override text color to black if borderColor is yellow (gold) */
+.card[style*="--borderColor: gold"]:hover {
+  color: black !important; /* Text becomes black on hover if gold */
+}
+
+.card[style*="--borderColor: gold"]:hover h2,
+.card[style*="--borderColor: gold"]:hover p {
+  color: black !important;
 }
 
 .card img {
