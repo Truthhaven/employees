@@ -1,0 +1,16 @@
+.headerTitle{
+    font-family: "Avenir Next", "Avenir", Arial, sans-serif;
+    font-size: 4em;
+    text-align: center;
+    font-weight: 600;
+}
+
+.horizontal-line {
+    width: 80%; 
+    height: 1px;
+    background-color: gray;
+    border: none;
+    margin: 20px auto; 
+  }
+  
+  

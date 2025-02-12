@@ -1,5 +1,6 @@
 import EmployeeCard from "./components/EmployeeCard";
 import "./App.css";
+import Header from "./components/Header";
 
 const employees = [
   { name: "Alice Johnson", role: "Software Engineer", department: "Engineering", email: "alice@example.com", profilePicture: "./pic.jpg", yearsAtCompany: 3 },
@@ -16,11 +17,14 @@ const employees = [
 
 function App() {
   return (
+    <> 
+    <Header /> 
     <div className="container">
       {employees.map((employee, index) => (
         <EmployeeCard key={index} employee={employee} />
       ))}
     </div>
+    </>
   );
 }
 
