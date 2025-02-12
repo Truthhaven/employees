@@ -5,7 +5,7 @@
   width: 80%;
   margin: 0 auto; /* Centers horizontally */
   padding: 0;
-  gap: 20px;
+  gap: 1.25em;
   margin-top: 2em;
 }
 
@@ -20,4 +20,35 @@
   align-items: center;
   width: 92.5%; 
   margin: 0 auto; /* Centers the container */
+}
+.no-results-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  background-color: #333333; /* Dark Gray */
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1000;
+  width: 300px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.no-results-popup p {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+/* Move popup to the bottom for screens below 414px */
+@media (max-width: 414px) {
+  .no-results-popup {
+    top: auto;
+    bottom: 10px; /* Position it slightly above the screen bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 90%; /* Make it responsive */
+    max-width: 350px;
+  }
 }

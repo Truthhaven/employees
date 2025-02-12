@@ -19,9 +19,24 @@
     justify-content: space-between; /* Moves items to opposite ends */
     align-items: center; /* Keeps text vertically aligned */
     width: 100%; /* Ensures full container width */
+    font-size: .55em;
+    font-family: "Avenir Next", "Avenir", Arial, sans-serif;
   }
 
   .headerContainer{
     width: 80%;
     margin: 0 auto;
+  }
+
+  .filterBy{
+    font-weight: 500;
+  }
+
+  .clearAll{
+    font-weight: normal;
+    transition: text-decoration 0.2s ease-in-out; /* Smooth underline effect */
+  }
+
+  .clearAll:hover {
+    text-decoration: underline; /* Underline on hover */
   }

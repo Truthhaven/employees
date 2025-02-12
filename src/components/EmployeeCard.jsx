@@ -1,26 +1,30 @@
-import "./EmployeeCard.css"
+import "./EmployeeCard.css";
 
 const EmployeeCard = ({ employee }) => {
-    const borderColor =
-    employee.yearsAtCompany > 5 ? "gold" :
-    employee.yearsAtCompany <= 1 ? "red" :
-    "gray"; 
+  console.log("Employee Data:", employee); // Debugging: Check if years_at_company exists
 
-    const yearEmployed = employee.yearsAtCompany === 1 ? "year" : "years";
-    
-    return (
-        <div className="card" style={{ border: `.5px solid ${borderColor}` }}>
-          <img src={employee.profilePicture} alt={employee.name} />
-          <div className="info">
-            <h2 className = "name">{employee.name}</h2>
-            <p className = "role">{employee.role}</p>
-            <div className = "groupedInfo"> 
-            <p className = "department">{employee.department}</p>
-            <p className = "years"> {employee.yearsAtCompany} {yearEmployed} employed</p>
-            <p className = "email">{employee.email}</p>
-            </div>
-          </div>
+  // Ensure database property names match the frontend
+  const borderColor =
+    employee?.years_at_company > 5 ? "gold" :
+    employee?.years_at_company <= 1 ? "#ac0000" : 
+    "gray";
+
+  return (
+    <div className="card" style={{ "--borderColor": borderColor }}>
+      <img src={employee?.profile_picture || "./default.jpg"} alt={employee?.name} />
+      <div className="info">
+        <h2 className="name">{employee?.name}</h2>
+        <p className="role">{employee?.role}</p>
+        <div className="groupedInfo">
+          <p className="department">{employee?.department}</p>
+          <p className="years">
+            {employee?.years_at_company} {employee?.years_at_company === 1 ? "year" : "years"} employed
+          </p>
+          <p className="email">{employee?.email}</p>
         </div>
-      );
-  };
-export default EmployeeCard; 
+      </div>
+    </div>
+  );
+};
+
+export default EmployeeCard;
