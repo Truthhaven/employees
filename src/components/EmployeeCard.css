@@ -3,10 +3,41 @@
   flex-direction: row;
   width: 40em;
   height: 12em;
+  transition: transform 0.2s ease-in-out;
+  position: relative; /* Important for absolute positioning */
+  z-index: 1; /* Ensures text stays above background */
+}
+
+/* Ensure every card gets the vertical red line */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0; /* Moves line to the right */
+  width: 4px; /* Line thickness */
+  height: 100%; /* Extends full height */
+  background-color: red;
+  opacity: 0.7; /* Starts slightly transparent */
+  transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.card:hover {
+  color: white; /* Change text to white */
+}
+.card:hover h2,
+.card:hover p {
+  color: white;
+}
+
+/* Expand the red line on hover */
+.card:hover::before {
+  width: 50%; /* Expands the line */
+  opacity: 1;
 }
 
 .card img{
-  width: 20em;
+  width: 50%;
   height: 12em;
 }
 
@@ -37,3 +68,4 @@
   margin: 0; /* Removes unnecessary spacing */
   padding: 0; /* Ensures no extra padding is added */
 }
+
