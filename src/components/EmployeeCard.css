@@ -175,7 +175,7 @@
 }
 
 /* Extra small screens (below 400px) */
-@media (max-width: 414px) {
+@media (max-width: 800px) {
   .card::before {
     left: 0; /* Start from the very left */
     width: 100%; /* Cover full width */
