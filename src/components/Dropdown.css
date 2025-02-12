@@ -1,0 +1,31 @@
+.dropdown-container {
+    display: flex;
+    flex-direction: column; /* Ensures the label is above the dropdown */
+    align-items: flex-start; /* Aligns label and dropdown properly */
+    gap: 5px; /* Adds space between label and dropdown */
+    margin-bottom: 10px;
+    width: 20%;
+    margin: 0 auto; /* Centers horizontally */
+  }
+  
+  label {
+    display: block; /* Ensures the label is on top */
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .dropdown {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Ensures dropdown takes full width of container */
+  }
+  
+  .dropdown:hover {
+    border-color: #888;
+  }
+  
+ 
+  

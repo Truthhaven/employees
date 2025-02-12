@@ -1,6 +1,7 @@
 import EmployeeCard from "./components/EmployeeCard";
 import "./App.css";
 import Header from "./components/Header";
+import DepartmentDropdown from "./components/DepartmentDropdown";
 
 const employees = [
   { name: "Alice Johnson", role: "Software Engineer", department: "Engineering", email: "alice@example.com", profilePicture: "./pic.jpg", yearsAtCompany: 3 },
@@ -19,6 +20,12 @@ function App() {
   return (
     <> 
     <Header /> 
+        <div className = "dropdowns"> 
+        <DepartmentDropdown employees={employees} attribute="department" label="Department" />
+          <DepartmentDropdown employees={employees} attribute="role" label="Role" />
+          <DepartmentDropdown employees={employees} attribute="yearsAtCompany" label="Years at Company" />
+        </div>
+    
     <div className="container">
       {employees.map((employee, index) => (
         <EmployeeCard key={index} employee={employee} />
