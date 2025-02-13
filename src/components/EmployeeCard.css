@@ -54,6 +54,11 @@
   height: 12em;
 }
 
+.employee-image {
+  width: 50%;
+  height: 12em;
+}
+
 .info {
   margin-left: 2em;
   font-family: "Avenir Next", "Avenir", Arial, sans-serif;
