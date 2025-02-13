@@ -5,6 +5,7 @@ const Header = ({ resetFilters }) => {
         <>
             <div className="headerContainer"> 
                 <h1 className="headerTitle"> Our People</h1>
+                <div className = "searchContent"> 
                 <hr className="horizontal-line" />
                 <div className="filterText"> 
                     <h1 className="filterBy"> FILTER BY </h1>
@@ -12,6 +13,7 @@ const Header = ({ resetFilters }) => {
                     <h1 className="clearAll" onClick={resetFilters}>
                         Clear All
                     </h1>
+                </div>
                 </div>
             </div>
         </>
