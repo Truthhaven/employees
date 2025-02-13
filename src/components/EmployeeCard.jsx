@@ -1,9 +1,7 @@
 import "./EmployeeCard.css";
 
-const EmployeeCard = ({ employee }) => {
-  console.log("Employee Data:", employee); // Debugging: Check if years_at_company exists
+const EmployeeCard = ({ employee, onDelete}) => {
 
-  // Ensure database property names match the frontend
   const borderColor =
     employee?.years_at_company > 5 ? "gold" :
     employee?.years_at_company <= 1 ? "#ac0000" : 
@@ -13,6 +11,7 @@ const EmployeeCard = ({ employee }) => {
     <div className="card" style={{ "--borderColor": borderColor }}>
       <img className="employee-image" src={employee?.profile_picture || "./employeePic.jpeg"} alt={employee?.name} />
       <div className="info">
+      <button className="delete-btn" onClick={() => onDelete(employee.id)}>x</button>
         <h2 className="name">{employee?.name}</h2>
         <p className="role">{employee?.role}</p>
         <div className="groupedInfo">
