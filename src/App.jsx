@@ -101,7 +101,7 @@ function App() {
   // Add employees
   const addEmployee = async () => {
     if (!newEmployee.name || !newEmployee.role || !newEmployee.department || !newEmployee.email || newEmployee.years_at_company === "") {
-      alert("All fields are required.");
+      alert("All fields are required. Please ensure that 'Years at Company' is a numeric value.");
       return;
     }
   
