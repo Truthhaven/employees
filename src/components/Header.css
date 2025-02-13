@@ -24,10 +24,14 @@
   }
 
   .headerContainer{
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
   }
 
+  .searchContent{
+    width: 80%;
+    margin: 0 auto;
+  }
   .filterBy{
     font-weight: 500;
   }
@@ -35,6 +39,7 @@
   .clearAll{
     font-weight: normal;
     transition: text-decoration 0.2s ease-in-out; /* Smooth underline effect */
+    z-index: 1;
   }
 
   .clearAll:hover {
