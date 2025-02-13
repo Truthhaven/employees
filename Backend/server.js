@@ -70,7 +70,7 @@ app.post("/employees", async (req, res) => {
     const { name, role, department, email, years_at_company } = req.body;
 
     if (!name || !role || !department || !email || years_at_company === undefined) {
-        return res.status(400).json({ error: "All fields are required." });
+        return res.status(400).json({ error: "All fields are required. Please ensure that 'Years at Company' is a numeric value." });
     }
 
     const profilePic = "./employeePic.jpeg"; // Default profile picture
