@@ -11,7 +11,7 @@ const EmployeeCard = ({ employee }) => {
 
   return (
     <div className="card" style={{ "--borderColor": borderColor }}>
-      <img src={employee?.profile_picture || "./default.jpg"} alt={employee?.name} />
+      <img className="employee-image" src={employee?.profile_picture || "./employeePic.jpeg"} alt={employee?.name} />
       <div className="info">
         <h2 className="name">{employee?.name}</h2>
         <p className="role">{employee?.role}</p>
