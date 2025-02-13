@@ -19,6 +19,16 @@ function App() {
     email: "",
     years_at_company: ""
   });
+  useEffect(() => {
+    if (!showForm) {
+      setNewEmployee({ name: "", role: "", department: "", email: "", years_at_company: "" });
+    }
+  }, [showForm]);
+  
+  const toggleForm = () => {
+    setShowForm((prev) => !prev); // Simply toggles `showForm`
+  };
+  
   // Fetch employees from backend on mount
   useEffect(() => {
     fetch("http://localhost:5001/api/employees") // Call backend API
@@ -95,10 +105,9 @@ function App() {
       return;
     }
   
-    // Ensure `years_at_company` is sent as a number
     const employeeToAdd = {
       ...newEmployee,
-      profile_picture: "./employeePic.jpeg", // Automatically assign the default profile picture
+      profile_picture: "./employeePic.jpeg", // Default profile picture
       years_at_company: parseInt(newEmployee.years_at_company, 10) || 0 // Convert to number
     };
   
@@ -109,21 +118,19 @@ function App() {
         body: JSON.stringify(employeeToAdd),
       });
   
-      // Log response headers and raw text
-      console.log("Response Headers:", response.headers);
-      const responseText = await response.text(); // Read raw response as text
-      console.log("Raw Response:", responseText);
+      const responseData = await response.json();
+      console.log("Server Response:", responseData); // Debugging
   
       if (!response.ok) {
-        throw new Error(`Server error: ${response.status} - ${responseText}`);
+        throw new Error(`Server error: ${response.status} - ${responseData.error}`);
       }
   
-      // Only parse JSON if responseText is not empty
-      const data = responseText ? JSON.parse(responseText) : {};
-  
-      setEmployees([...employees, employeeToAdd]);
-      setFilteredEmployees([...filteredEmployees, employeeToAdd]);
       alert("Employee added successfully!");
+  
+      // Update state with the full employee object including the `id`
+      setEmployees([...employees, responseData.employee]);
+      setFilteredEmployees([...filteredEmployees, responseData.employee]);
+  
       setNewEmployee({ name: "", role: "", department: "", email: "", years_at_company: "" });
       setShowForm(false);
     } catch (error) {
@@ -131,6 +138,39 @@ function App() {
       alert(`Failed to add employee: ${error.message}`);
     }
   };
+  
+  
+  
+  
+
+  // Delete Employees
+  const deleteEmployee = async (id) => {
+    console.log(`Attempting to delete employee with ID: ${id}`); // Debugging
+  
+    try {
+      const response = await fetch(`http://localhost:5001/employees/${id}`, {
+        method: "DELETE",
+      });
+  
+      const responseText = await response.text();
+      console.log("Server Response:", responseText); // Debugging
+  
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status} - ${responseText}`);
+      }
+  
+      alert("Employee deleted successfully!");
+  
+      // Immediately update state to prevent another delete attempt
+      setEmployees((prevEmployees) => prevEmployees.filter(emp => emp.id !== id));
+      setFilteredEmployees((prevFiltered) => prevFiltered.filter(emp => emp.id !== id));
+  
+    } catch (error) {
+      console.error("Error deleting employee:", error);
+      alert(`Failed to delete employee: ${error.message}`);
+    }
+  };
+  
   
   
 
@@ -165,17 +205,19 @@ function App() {
       )}
 
       {/* Employee Cards */}
-      <div className="container">
+            <div className="container">
         {filteredEmployees
-          .sort((a, b) => b.years_at_company - a.years_at_company) // Sort by years
-          .map((employee, index) => (
-            <EmployeeCard key={index} employee={employee} />
-          ))}
-      </div>
+        .sort((a, b) => b.years_at_company - a.years_at_company) // Sort by years
+        .map((employee) => (
+          <EmployeeCard key={employee.id} employee={employee} onDelete={deleteEmployee} />
+        ))}
+</div>
+
        {/* Add Employee Button */}
-       <button className="add-employee-btn" onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Close Form" : "Add Employee"}
-      </button>
+       <button className="add-employee-btn" onClick={toggleForm}>
+  {showForm ? "Close Form" : "Add Employee"}
+</button>
+
 
        {/* Employee Form (Only Shows If showForm is true) */}
       {showForm && (

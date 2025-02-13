@@ -63,6 +63,7 @@ app.get("/api/employees/search", async (req, res) => {
     }
 });
 
+// Add Employees
 app.post("/employees", async (req, res) => {
     console.log("Received request body:", req.body); // Debugging
 
@@ -76,14 +77,21 @@ app.post("/employees", async (req, res) => {
 
     try {
         const db = await connectDB();
-        await db.run(
+
+        // Insert the new employee and return the generated ID
+        const result = await db.run(
             `INSERT INTO employees (name, role, department, email, profile_picture, years_at_company)
              VALUES (?, ?, ?, ?, ?, ?)`,
             [name, role, department, email, profilePic, years_at_company]
         );
+
+        // Fetch the newly created employee using the last inserted ID
+        const newEmployee = await db.get("SELECT * FROM employees WHERE id = ?", [result.lastID]);
+
         await db.close();
 
-        res.status(201).json({ message: "Employee added successfully" });
+        // Return the full employee object including `id`
+        res.status(201).json({ message: "Employee added successfully", employee: newEmployee });
     } catch (error) {
         console.error("Database error:", error);
 
@@ -94,6 +102,44 @@ app.post("/employees", async (req, res) => {
         res.status(500).json({ error: error.message || "Internal server error" });
     }
 });
+
+
+// Delete Employees
+app.delete("/employees/:id", async (req, res) => {
+    const { id } = req.params;
+
+    if (!id) {
+        return res.status(400).json({ error: "Employee ID is required." });
+    }
+
+    try {
+        const db = await connectDB();
+        
+        // First, check if the employee exists before deleting
+        const existingEmployee = await db.get("SELECT * FROM employees WHERE id = ?", [id]);
+        if (!existingEmployee) {
+            return res.status(404).json({ error: "Employee not found. It may have already been deleted." });
+        }
+
+        // Perform delete operation
+        const result = await db.run("DELETE FROM employees WHERE id = ?", [id]);
+
+        if (result.changes === 0) {
+            return res.status(404).json({ error: "Employee not found. It may have already been deleted." });
+        }
+
+        // Fetch the updated employees list
+        const remainingEmployees = await db.all("SELECT * FROM employees");
+
+        await db.close();
+        res.json({ message: "Employee deleted successfully.", employees: remainingEmployees });
+    } catch (error) {
+        console.error("Database error:", error);
+        res.status(500).json({ error: "Internal server error." });
+    }
+});
+
+
 
 
 

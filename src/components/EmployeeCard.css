@@ -203,3 +203,21 @@
     font-size: 0.65em;
   }
 }
+
+
+.delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  color: black;
+  border: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.delete-btn:hover {
+  color: darkred;
+}
